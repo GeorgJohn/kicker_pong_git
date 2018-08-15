@@ -152,7 +152,7 @@ class PGAgent(object):
     def predict_action(self, state, epsilon_percentage):
         action_distribution = self.session.run(self.output, feed_dict={self.state: [state]})[0]
         # action = np.argmax(action_distribution)
-        print(action_distribution)
+        # print(action_distribution)
         action = self.sample_action_from_distribution(action_distribution, epsilon_percentage)
         return action
 
@@ -222,7 +222,7 @@ def main():
     plot_frequency = 10
     max_episode_length = 1000
     render_start = 1000
-    should_render = True
+    should_render = False
     should_plot = True
     episode_finished = False
 
@@ -319,7 +319,7 @@ def main():
                 if np.mod(i, 100) == 0:
                     print('Mean Reward: ', np.mean(episode_rewards), '  Games: ', i)
                     print('Anzahl der gewonnen Spiele: ', env.get_goal_counter(), '/100 Spielen')
-                    if env.get_goal_counter() > 50.0:
+                    if env.get_goal_counter() > 99.0:
                         solved = True
                         save_path = agent.saver.save(session, "/tmp/model_solved.ckpt")
                         print("Model saved in path: %s" % save_path)

@@ -47,8 +47,10 @@ class Ball:
         self.__angle = self.__new_angle
 
     def kick_off(self):
-        self.__pos[Coordinate.X] = self.__new_pos[Coordinate.X] = COURT_WIDTH - 100
-        self.__pos[Coordinate.Y] = self.__new_pos[Coordinate.Y] = COURT_HEIGHT / 2
+        pos_x = random.randint(COURT_WIDTH / 2, COURT_WIDTH - 100)
+        pos_y = random.randint(BALL_RADIUS, COURT_HEIGHT-BALL_RADIUS)
+        self.__pos[Coordinate.X] = self.__new_pos[Coordinate.X] = pos_x  # COURT_WIDTH - 100
+        self.__pos[Coordinate.Y] = self.__new_pos[Coordinate.Y] = pos_y   # COURT_HEIGHT / 2
         self.__new_angle = random.uniform(- math.pi/12, math.pi/12)
         if self.__new_angle > 0:
             self.__angle = self.__new_angle = self.__new_angle - math.pi
